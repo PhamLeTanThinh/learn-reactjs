@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import todoTask from '../../data/todoTask.json';
 import Task from './Task';
 import './styles.scss';
+import TodoFormIndex from './TodoForm/TodoFromIndex';
 
 export default class TodoList extends Component {
 
@@ -10,7 +11,7 @@ export default class TodoList extends Component {
         super(props)
         this.state = {
             taskList: todoTask,
-            filterStatus:'all'
+            filterStatus: 'all'
         }
     }
 
@@ -25,43 +26,53 @@ export default class TodoList extends Component {
         };
         newTodoList[index] = newToDo;
         //Update todo list
-        this.setState({taskList:newTodoList})
+        this.setState({ taskList: newTodoList })
     }
 
     handleShowAllClick = () => {
-        this.setState({filterStatus:'all'})
+        this.setState({ filterStatus: 'all' })
     }
     handleShowCompleteClick = () => {
-        this.setState({filterStatus:'completed'})
+        this.setState({ filterStatus: 'completed' })
     }
     handleShowNewClick = () => {
-        this.setState({filterStatus:'new'})
+        this.setState({ filterStatus: 'new' })
     }
 
     renderTask = () => {
         return this.state.taskList.map((task, index) => {
             return (
-                <Task key={index} index={index} task={task} onToDoClick = {this.handleToDoClick}/>
+                <Task key={index} index={index} task={task} onToDoClick={this.handleToDoClick} />
             )
         })
     }
 
     
-    
 
     render() {
         const renderTaskList = this.state.taskList.filter(task => this.state.filterStatus === 'all' || this.state.filterStatus === task.status);
         console.log(renderTaskList)
+
+        const handleTodoFormSubmit = (values) => {
+            console.log('Form submit:', values)
+        }
         return (
             <div>
+
+                <h3>TodoForm</h3>
+                <TodoFormIndex onSubmit = {handleTodoFormSubmit}/>
                 <ul className="todo-list">
-                {this.renderTask()}
-            </ul>
-            <button onClick={this.handleShowAllClick}>Show All</button>
-            <button onClick={this.handleShowCompleteClick}>Show Complete</button>
-            <button onClick={this.handleShowNewClick}>Show New</button>
+                {this.state.taskList.map((task, index) => {
+                    return (
+                        <Task key={index} index={index} task={renderTaskList} onToDoClick={this.handleToDoClick} />
+                    )
+                    })}
+                </ul>
+                <button onClick={this.handleShowAllClick}>Show All</button>
+                <button onClick={this.handleShowCompleteClick}>Show Complete</button>
+                <button onClick={this.handleShowNewClick}>Show New</button>
             </div>
-            
+
         )
     }
 }
