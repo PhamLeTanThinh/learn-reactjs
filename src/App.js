@@ -1,8 +1,8 @@
 import './App.css';
-import AlbumList from './component/Album/component/AlbumList/index';
-import TodoList from './component/ToDoList/index';
-import { useEffect } from 'react';
-import productApi from './api/productApi';
+// import AlbumList from './component/Album/component/AlbumList/index';
+// import TodoList from './component/ToDoList/index';
+// import { useEffect } from 'react';
+// import productApi from './api/productApi';
 import PracticePropState from './component/PracticePropState/PracticePropState';
 
 
