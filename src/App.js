@@ -1,39 +1,25 @@
 import './App.css';
-// import AlbumList from './component/Album/component/AlbumList/index';
-// import TodoList from './component/ToDoList/index';
-// import { useEffect } from 'react';
-// import productApi from './api/productApi';
-import PracticePropState from './component/PracticePropState/PracticePropState';
-
-
+import CounterFetures from './features/Counter/index';
+import { Route, Switch } from 'react-router-dom';
+import NotFound from './component/NotFound/index';
+import TodoFeature from 'features/Todo';
+import Header from './component/Header/index'
 
 function App() {
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const params = {
-  //       _limit: 10,
-  //     };
-  //     const productList = await productApi.getAll(params);
-  //     console.log(productList);
-  //   };
-
-  //   fetchProducts();
-  // }, [])
-
   return (
-    <div className="App">
-      {/* <Header />
-      <div className="container">
-        <Product />
-      </div>
-      <Databinding/>
-      <Event/>
-      <h1>hello Bou</h1> */}
-      {/* <AlbumList/>
-      <hr/>
-      <TodoList/> */}
-      <PracticePropState/>
+    <div className="App"> 
+      <Header />
+
+      <Switch>
+        <Route path="/todos" component={TodoFeature} />
+        <Route path="/counter" component={CounterFetures} />
+
+        <Route component={NotFound}/>
+      </Switch>
+
+
+      Footer
     </div>
   );
 }
